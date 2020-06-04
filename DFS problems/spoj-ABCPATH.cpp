@@ -2,6 +2,7 @@
 using namespace std;
 char g[55][55];
 bool visited[55][55]={0};
+int dis[55][55]={0};
 int n_row,n_col;
 int x_dir[8]= {0,0,1,-1,1,1,-1,-1};
 int y_dir[8]= {1,-1,0,0,1,-1,1,-1};
@@ -43,15 +44,33 @@ int main()
             {
                 g[i][j]=s[j];
                 visited[i][j]=0;
+                dis[i][j]=0;
             }
 
         }
         int s_row,s_col;
-        cin>>s_row>>s_col;
 
-        dfs(s_row,s_col,0);
-        //printf("Case %d: %d\n", tc, max_c);
-        cout<<"Case "<<tc<<": "<<max_c<<endl;
+        for(int i=0;i<n_row;i++){
+            for(int j=0;j<n_col;j++){
+
+                if(g[i][j]=='A'){
+                    dfs(i,j,0);
+                    dis[i][j]=max_c;
+                    max_c=0;
+                }
+
+            }
+        }
+        int ans=-1;
+        for(int i=0;i<n_row;i++){
+            for(int j=0;j<n_col;j++){
+                if(ans<dis[i][j])ans=dis[i][j];
+            }
+        }
+
+
+        printf("Case %d: %d\n", tc, ans);
+        //cout<<"Case "<<tc<<": "<<ans<<endl;
 
     }
 
