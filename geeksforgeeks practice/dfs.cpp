@@ -25,8 +25,9 @@ while(tc--){
         int u,v;
         cin>>u>>v;
         adj[u].push_back(v);
+        adj[v].push_back(u);
     }
-    vector<int>res=bfs(adj,n);
+    vector<int>res=dfs(adj,n);
     for(int i=0;i<n;i++){
         cout<<res[i]<<" ";
     }
@@ -40,29 +41,11 @@ return 0;
 
 
 
-
-vector <int> bfs(vector<int> g[], int N) {
-
-    // Your code here
-    vector<int>ans;
-    stack<int>s;
-    int color[N];
-    memset(color,0,sizeof(color[0])*N);
-    s.push(0);
-    color[0]=1;
-    while(!s.empty()){
-        int node=s.top();
-        s.pop();
-        ans.push_back(node);
-        color[node]=2;
-        for(int i=0;i<g[node].size();i++){
-            if(color[g[node][i]]==0){
-                s.push(g[node][i]);
-                color[g[node][i]]=1;
-            }
-        }
-    }
+///this is correct but not accepted in gfg because of their bad testing code
+vector <int> dfs(vector<int> g[], int N)
+{
 
 
-    return ans;
+
+
 }
