@@ -45,19 +45,19 @@ vector <int> bfs(vector<int> g[], int N) {
 
     // Your code here
     vector<int>ans;
-    queue<int>q;
+    stack<int>s;
     int color[N];
     memset(color,0,sizeof(color[0])*N);
-    q.push(0);
+    s.push(0);
     color[0]=1;
-    while(!q.empty()){
-        int node=q.front();
-        q.pop();
+    while(!s.empty()){
+        int node=s.top();
+        s.pop();
         ans.push_back(node);
         color[node]=2;
         for(int i=0;i<g[node].size();i++){
             if(color[g[node][i]]==0){
-                q.push(g[node][i]);
+                s.push(g[node][i]);
                 color[g[node][i]]=1;
             }
         }
